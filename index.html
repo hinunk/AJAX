@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>AJAX</title>
+	<style type="text/css">
+		#outer{
+			display: flex;
+			list-style: none;
+		}
+	</style>
+</head>
+<body>
+	<ol id="outer"></ol>
+	<button id="btn">load</button>
+	
+	<script>
+		btn.onclick = function(){
+			var req = new XMLHttpRequest()
+			req.open('GET','js/new_.json')
+			req.onload = function(){
+				var arr = JSON.parse(req.responseText)
+				arr.forEach(function(item,index){
+					var li = document.createElement('li')
+					var img = document.createElement('img')
+					li.appendChild(img)
+					img.src = item.url
+					outer.appendChild(li)
+				})
+			}
+			req.send()
+		}
+	</script>
+</body>
+</html>
